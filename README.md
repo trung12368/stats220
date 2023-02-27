@@ -1,3 +1,2 @@
 # stats220
-* chooo
-* chooo
+1.text
