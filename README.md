@@ -1,4 +1,4 @@
-# STATS 220 Repo
+# STATS 220 repository
 
 ## Introduction
 *This is the repository for my STAT220's works*
