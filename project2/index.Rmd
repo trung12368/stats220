@@ -1,0 +1,104 @@
+---
+title: "Project 2"
+subtitle: "STATS 220 Semester One 2023"
+author: "Jack Vu"
+date: "2023-03-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+```
+
+## Introduction
+
+This report investigate the correlation between the proficiency in language and usage frequency or time spent learning.Furthermore, this report also take the motivation to learn a new language into consideration.
+
+In the data collection process, I use a few method to keep the data collected tidy, such as using validation rules for response. This help me with collecting numeric data as it can be troublesome if respondents do not follow instruction. I also consider the wording for my questions so that respondants will not misinterpret them.
+
+The categorical data generated using a question with check boxes (fixed options) means that the Google sheet data collected using the form is not strictly "rectangular" or "tidy" data because the data is not organized in a way that allows for easy analysis. When using a question with check boxes, the data is generated in a way that multiple options can be selected for a single question. This means that the responses for a single question are spread across multiple columns, making it difficult to analyze the data in its raw form.
+
+However, in my case, my question with check box has only 3 options so it has 7 cases. I can use each case as it own type of response to analyse the data because the question is about motivations, so different motivations by it self or together may have different effect on the fluency of the learner.
+
+Here is the link to my Google form: [Learning language survey](https://forms.gle/aRHWYpvKEjYdcokG9)
+
+## Analytics
+
+[Published CSV File](https://docs.google.com/spreadsheets/d/e/2PACX-1vQsJSpCVESQrLloE5P6ZLATmyMJy9Ia_tnAHo7qcaopKp7dgaOUWyvGfZajAfOXj3iSe6IkfMrfKq6N/pub?output=csv)
+
+```{r}
+library(tidyverse)
+ggsheet <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vQsJSpCVESQrLloE5P6ZLATmyMJy9Ia_tnAHo7qcaopKp7dgaOUWyvGfZajAfOXj3iSe6IkfMrfKq6N/pub?output=csv"
+
+#Read data to dataframe and rename column
+
+learning_data <- read.csv(ggsheet) %>%
+  rename(is_second_language = 2,
+         first_language = 3,
+         motivation = 4,
+         second_language = 5,
+         fluency = 6,
+         month = 7,
+         hours_per_week = 8,
+         usage_frequency = 9,
+         to_remove1 = 10,
+         to_remove2 = 11,
+         to_remove3 = 12)
+
+#Clean data for analysis
+
+learning_data <- learning_data[learning_data$is_second_language != "No", ]
+learning_data <- learning_data[, !(names(learning_data) %in% c("to_remove1", "to_remove2", "to_remove3"))]
+```
+
+By exploring the lowest and highest hours spent learning per week, then explore their fluency, we can see that the one that spent most hours is more fluent that the one that spent the least hours. However, even with least our, this learner still have advance fluency, this can be because they have learn the language for a long time or maybe they use it everyday so their fluency is still advance.
+
+**Min**
+
+```{r}
+## Explore the learner with lowest hours spent learning per week
+min(learning_data$hours_per_week)
+```
+Min fluency
+```{r}
+min_index <- which.min(learning_data$hours_per_week)
+min_hours_fluency <- learning_data[min_index, 6]
+min_hours_fluency
+```
+
+**Max**
+
+``` {r}
+## Explore the learner with highest hours spent learning per week
+max(learning_data$hours_per_week)
+```
+Max fluency
+```{r}
+max_index <- which.max(learning_data$hours_per_week)
+max_hours_fluency <- learning_data[max_index, 6]
+max_hours_fluency
+```
+
+This bar chart show the correlation between **motivation** and **fluency**
+```{r}
+learning_data %>%
+  ggplot() + 
+    geom_bar(aes(x= fluency, fill = motivation)) ##Fluency/ motivation bar chart
+```
+
+This bar chart show the correlation between **how long have they learned the language** and **fluency**
+```{r}
+learning_data %>%
+  ggplot() + 
+  geom_bar(aes(x=month, fill = fluency )) ##Fluency/ month learn bar chart
+
+```
+
+## Learning reflection
+
+The important idea that i learned from Module 2 Creating dynamic reporting systems is that I learned how to create a survey in a way that effectively capture data. This is new to me and I find that very useful and interesting.
+
+For this project, I think my creativity is in using R code to clean the data. I remove records that were not used but still collected to makes everyone that clicked on my survey feels included as my survey focus on multilingual students. I also use R code to extract the index of min and max to further invest the recorded data.
+
+Moving forward, I am eager to learn more about how to automate the data cleaning process for larger data sets, which will save time and increase efficiency. I am also excited to learn more about creating interactive reports, as this will help me present data in a more engaging and meaningful way. Overall, I feel that this module has equipped me with important skills that are applicable in various fields and look forward to applying them in my future work.
