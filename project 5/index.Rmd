@@ -1,0 +1,47 @@
+---
+title: "Project 5"
+subtitle: "STATS 220 Semester One 2023"
+author: "Jack Vu"
+date: "2023-05-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+## Introduction
+
+By choosing the top 100 playlists of Australia, UK and Global, I was hoping to find out about which country listen to older music compare to each other and compare to the world. As I am living in New Zealand or Oceania I am intersted in music taste of the people here. However, as New Zealand have a very small population and there was no top 100 playlist for Oceania, I chose Top 100: Australia to represent the region. I chose UK because they have a large amount of Stars and also there are some cultural similarity with New Zealand and Australia. And I chose global as standard to compare to. One can argue that US has a big music industry with many global stars and should be chosen, but they only make up 4.25% of world population so the global playlist was a better choice. 
+
+If I was asked to find which songs appeared on both of two different playlists I would use inner join to join both playlist by songID. When executed, the inner join operation will return the songs that appear in both playlists.
+
+## Data ceations
+
+By comparing the number of songs that was released before 2020, the visualisation tells a story of which region prefered older music. I chose to investigate songs released before 2020 also because those were the years before covid-19 and the explosion of tik-tok's artists. Those songs were released through more tranditional channels. 
+
+The second creation was a gif cycling between its title and the album cover of the oldest album in the 3 playlists. I also annotated the released date on the frame with the album cover. This album is relevent to the data visualization I created as it is the oldest album. This creatation also show that i used knowledges from module 5 and module 1. The album cover were scrape from the web and release date was recovered from the data frame, so if 3 different playlists were used, the code for this gif will still generate correct information.
+
+## Final reflection
+
+I have learned about data scraping in Module 5 and the ethical concerns related to it. I found this module to be the most interesting because I can see many potential uses for this skill as a student. The ability to gather data from different websites will help me investigate and understand more about topics that I am interested in, whether it's for my studies, work, or even hobbies.
+
+Throughout the course, I have familiarized myself with R and RStudio. Additionally, I have taken my first few steps in learning HTML, CSS, and how to work with JSON files. These projects have provided me with a strong foundation in data analysis, visualization, and manipulation. I have gained an understanding of the significance of data quality and integrity, the effectiveness of storytelling through visualizations, and the ethical considerations associated with data scraping.
+
+Looking ahead, I am eager to delve into more advanced techniques in these areas, such as machine learning algorithms for data analysis and the creation of interactive dashboards for data exploration. I am also excited to explore emerging technologies and trends in the field of data analysis, ensuring that I stay up-to-date with the latest tools and methodologies.
+
+Overall, I am confident that the knowledge and skills I have acquired in this course will serve as a solid foundation for my future endeavors in data analysis.
+
+## Appendix
+```{r file='song_web.R', eval=FALSE, echo=TRUE}
+
+```
+```{r file='album_web.R', eval=FALSE, echo=TRUE}
+
+```
+```{r file='data_creativity.R', eval=FALSE, echo=TRUE}
+
+```
+
+
+
